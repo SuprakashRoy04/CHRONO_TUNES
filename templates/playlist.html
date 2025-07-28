@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your Playlist</title>
+    <style>
+      body {
+        background: linear-gradient(45deg, #5ffff7cf, #feb47b, #ff7e5f);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 35px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 500px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      h1, h2 {
+        text-align: center;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      }
+
+      /* Styling for the playlist items */
+      .audio-list {
+        margin-top: 20px;
+        padding: 0;
+        text-align: center;
+      }
+
+      .audio-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.05);
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 8px;
+        transition: transform 0.2s;
+      }
+
+      .audio-item:hover {
+        transform: scale(1.05);
+        background: rgba(0, 0, 0, 0.08);
+      }
+
+      .audio-item a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        padding: 5px 10px;
+      }
+
+      .audio-item a:hover {
+        color: #ff7e5f;
+      }
+
+      .nav-links {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .nav-links a {
+        color: #333;
+        text-decoration: none;
+        padding: 10px 16px;
+        border-radius: 5px;
+        background-color: #5999f3c6;
+        transition: background-color 0.3s;
+      }
+
+      .nav-links a:hover {
+        background-color: #e0e0e0ef;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome, {{ username }}</h1>
+      <h2>Your Generated Playlist for {{ genre }}</h2>
+
+      <!-- Music List -->
+      <div class="audio-list">
+        {% for audio in audio_files %}
+          <div class="audio-item">
+            <p><a href="{{ audio.url }}" target="_blank">{{ audio.name }}</a></p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="nav-links">
+        <a href="{{ url_for('home') }}">Back to Home</a>
+        <a href="{{ url_for('profile') }}">Back to Profile</a>
+      </div>
+    </div>
+  </body>
+</html>

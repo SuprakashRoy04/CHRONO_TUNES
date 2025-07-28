@@ -1,0 +1,11 @@
+Flask 
+pymongo 
+flask-wtf
+werkzeug
+razorpay
+datetime
+flask_login
+email_validator
+google-api-python-client
+google_auth_oauthlib
+serverless_wsgi

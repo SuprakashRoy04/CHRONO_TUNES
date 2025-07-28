@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chronotunes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* General Reset and Box Sizing */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      /* Body and Background */
+      body {
+        background-image: url('https://media.istockphoto.com/id/1459334557/vector/music-notes-with-curves-swirls-vector-illustration-melody-element-design-background-with.jpg?s=612x612&w=0&k=20&c=01EARrUJsE3YnisyvrsjkHCdWnqu4ureV9WIEzE_14s=');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #f7f3f3;
+        line-height: 1.6;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        width: 250px;
+        height: 100vh;
+        background-color: rgba(68, 66, 9, 0.7);
+        color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 30px;
+      }
+
+      .sidebar h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: white;
+        font-family: 'Lobster', cursive;
+      }
+
+      .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .sidebar ul li {
+        margin: 20px 0;
+      }
+
+      .sidebar ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+      }
+
+      .sidebar ul li a:hover {
+        color: #00bcd4;
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: 250px;
+        padding: 30px;
+        background-color: rgba(108, 106, 106, 0.5);
+        min-height: 100vh;
+      }
+
+      .flash-messages {
+        margin-bottom: 20px;
+      }
+
+      .message {
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .message.info {
+        background-color: #2196f3;
+        color: rgb(8, 0, 0);
+      }
+
+      .message.success {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      .message.error {
+        background-color: #f44336;
+        color: white;
+      }
+
+      /* Optional styling for the content block */
+      main {
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Chronotunes</h2>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('get_playlist') }}">Playlist</a></li>
+        <li><a href="{{ url_for('questionnaire') }}">Questionnaire</a></li>
+        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+        <li><a href="{{ url_for('contactUs') }}">Contact Us</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li><a href="{{ url_for('admin') }}">Admin</a></li>
+      </ul>
+    </div>
+    <main class="main-content">
+      <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="message {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+</html>

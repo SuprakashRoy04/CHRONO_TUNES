@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        /* Full-screen background image */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://thumbs.dreamstime.com/b/stationery-background-school-tools-seamless-pattern-art-education-wallpaper-line-icons-pencil-pen-paintbrush-stationery-169363851.jpg'); /* Change URL to your desired image */
+            background-size: cover; /* Ensures the image covers the full screen */
+            background-position: center center; /* Keeps the image centered */
+            background-attachment: fixed; /* Ensures the background stays fixed while scrolling */
+            margin: 0;
+            height: 100vh; /* Makes sure the body takes up the entire height of the screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.11); /* Reduced opacity for more transparency */
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(10px); /* Optional blur effect */
+        }
+
+
+        .form-container h2 {
+            font-size: 2rem;
+            color:black;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Set font to Arial */
+
+        }
+
+        .form-container p {
+            font-size: 1.1rem;
+            color: black;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-size: 1rem;
+            color: black;
+            text-align: left;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 95%;
+            padding: 0.9rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #f7f7f7;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-container input:focus, .form-container textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .form-container button {
+            width: 95%;
+            padding: 1rem;
+            background-color: #4f9a41; /* Fern green color */
+            color: black; /* Text color set to black */
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-link{
+            text-align: center;
+            margin-top: 1rem;
+            color: black;
+        }
+
+        .form-container button:hover {
+            background-color: #3b7a32; /* Slightly darker shade of fern green on hover */
+        }
+
+
+        .form-container .register-link a {
+            color: black; /* Black color for the 'Back to Home' text */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .form-container .register-link a:hover {
+            text-decoration: underline;
+        }
+
+
+        .flash-messages {
+            margin-bottom: 1.5rem;
+        }
+
+        .flash-messages .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .flash-messages .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .flash-messages .danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Contact Us</h2>
+        <p>Have questions or feedback? We'd love to hear from you!</p>
+
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <label for="name">Name</label>
+            {{ form.name(size=32, placeholder="Enter your Name") }}
+            
+            <label for="email">Email</label>
+            {{ form.email(size=32, placeholder="Enter your Email") }}
+            
+            <label for="messege">Message</label>
+            {{ form.messege(size=300, placeholder="Enter your Query or Message Here") }}
+            
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div class="register-link">
+            <a href="{{ url_for('home') }}">Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+{% extends "base.html" %} 
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoTunes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9iB1ipOG120PfdCITsJu1dL8_EwipEc43XRSNSIbaXhr1gNPiRCL3eYpia9zNcNaCyQ&usqp=CAU'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h2, h3 {
+            color: #2c3e50;
+            text-align: center;
+            
+        }
+
+        .section-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+            margin: 30px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-content div {
+            width: 48%;
+        }
+
+        .section-content img {
+            width: 100%; /* Adjusting image to take full width */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-spacing {
+            height: 30px;
+        }
+
+        ul {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .section-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Set font to Arial */
+
+        }
+
+        .section-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            width: 40%;
+            margin: 0 auto;
+        }
+
+        .section-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            color:white; /* Change font color to black */
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Set font to Arial */
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            color: white; /* Change font color to black */
+            font-family: 'Arial', sans-serif; /* Set font to Arial */
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .section-content {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .section-content div {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .section-content img {
+                max-width: 100%;
+                margin-top: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1>Welcome to ChronoTunes</h1>
+        <p>Your journey to musical wellness starts here.</p>
+    </div>
+
+    <div class="section-content">
+        <div>
+            <h2>About Us</h2>
+            <p>At ChronoTunes, we believe in the transformative power of music. Our platform combines cutting-edge technology with the therapeutic effects of Indian Classical Music, with a twist, to provide personalized musical experiences for your well-being.</p>
+
+            <div class="content-spacing"></div>
+
+            <h2>What We Offer:</h2>
+            <ul>
+                <li>A quick questionnaire to evaluate your Mood.</li>
+                <li>Personalized recommendations for improving the Mood.</li>
+                <li>Access to curated music recommendations based on the time of the day.</li>
+                <li>Membership benefits for extended support and resources.</li>
+            </ul>
+        </div>
+
+        <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7wa-N_J3S0kgYmIZ_yXoezJmXgd5YPSgmKV0hYhcCQmSFygEpHFteZcDRVi6VvDWG31A&usqp=CAU" alt="About Us">
+        </div>
+    </div>
+</body>
+{% endblock %}

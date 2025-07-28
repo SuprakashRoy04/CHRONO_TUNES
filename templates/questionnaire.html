@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Questionnaire</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://img.freepik.com/premium-photo/aesthetic-free-space-light-colour-classical-musical-banner-design-writing-poetry-poet_867452-37550.jpg') no-repeat center center/cover;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed; /* Fix the background */
+        }
+        h1 {
+            color: #333;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Set font to Arial */
+
+        }
+        .form-container {
+            background: rgba(210, 180, 140, 0.9); /* Semi-transparent brown */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            max-width: 500px;
+            text-align: left;
+            overflow-y: auto; /* Enable scrolling */
+            max-height: 80vh; /* Restrict height to enable scrolling */
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+
+        input[type="radio"] {
+            margin: 5px;
+        }
+        button {
+            background-color: #5a2e0f; /* Brown */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 190px;
+            font-size: 16px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #3e1d0a;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #5a2e0f; /* Brown */
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+        .radio-options {
+            display: flex;
+            justify-content: center;  /* Center align options */
+            gap: 10px;  /* Spacing between options */
+        }
+        .radio-options label {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between radio button and text */
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Mood and Feelings Questionnaire</h1>
+    <p>Answer this form based on how you might have been feeling or acting in the last 2 weeks.</p>
+    <div class="form-container">
+        <form method="POST">
+            {% for question in questions %}
+                <div>
+                    <label>{{ question }}</label><br>
+                </div>
+                <div class="radio-options">
+                    <label><input type="radio" name="{{ question }}" value="0" required> Not&nbsp;True</label>
+                    <label><input type="radio" name="{{ question }}" value="1"> Sometimes</label>
+                    <label><input type="radio" name="{{ question }}" value="2"> True</label>
+                </div>
+                
+                <br>
+            {% endfor %}
+            <button type="submit">Submit</button>
+            <a style="margin-left: 170px;" href="{{ url_for('home') }}">Back to Home</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+{% extends "base.html" %} {% block content %}
+
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: url("https://media.gettyimages.com/id/161673238/video/floating-musical-notes-pastel-blue.jpg?s=640x640&k=20&c=bik73Xaum77hu1xRTzd0a_nFj0KMaVEIsvUT9qRn3kQ=")
+      no-repeat center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h2,h3 {
+    text-align: center;
+    color: #000;
+    text-shadow: none;
+  }
+  h1 {
+    text-align: center;
+    color: #000;
+    font-size: 2.5em;
+    text-shadow: none;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+
+  }
+
+  .profile-container,
+  .playlists,
+  #profile {
+    background: rgba(255, 255, 255, 0); /* Fully transparent */
+    padding: 28px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 600px;
+    margin: 5px 50px;
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .playlist-item {
+    background: rgba(255,250,252,0.2); /* Slight transparency for readability */
+    margin: 10px 0;
+    padding: 13px;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .playlist-item strong {
+    color: #000;
+    text-shadow: none;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+    color: #000;
+    text-shadow: none;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #000;
+  }
+
+  button {
+    background-color: #5a2e0f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(95, 94, 94, 0.3);
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #3e1d0a;
+  }
+
+</style>
+
+<div class="profile-container">
+  <h2>User Profile</h2>
+  <h1>Welcome, {{ username }}!</h1>
+</div>
+
+  <div class="playlists">
+    <h3>Your Playlists:</h3>
+    <ul>
+      {% if combined_playlists %} {% for item in combined_playlists %}
+      <li class="playlist-item">
+        <strong>Genre: {{ item.genre }}</strong>
+        <p><strong>Time Created: {{ item.time_created }}</strong></p>
+        {% if is_member %}
+        <a href="{{ url_for('view_songs', index=loop.index0) }}" class="view-songs">View Songs</a>
+        {% endif %}
+      </li>
+      {% endfor %} {% else %}
+      <li>No playlists found.</li>
+      {% endif %}
+    </ul>
+  </div>
+{% if not is_member %}
+<form action="/membership" method="post" style="display: inline">
+  <button type="submit" class="buy-membership">Buy Membership</button>
+</form>
+{% endif %}
+<div class="profile-container">
+  <h3>Update Password</h3>
+  <form method="POST">
+    <label for="currentPassword">Current Password:</label>
+    <input
+      type="password"
+      id="currentPassword"
+      name="currentPassword"
+      required
+    />
+
+    <label for="newPassword">New Password:</label>
+    <input type="password" id="newPassword" name="newPassword" required />
+
+    <label for="confirmPassword">Confirm New Password:</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      name="confirmPassword"
+      required
+    />
+
+    <button type="submit">Update Password</button>
+  </form>
+</div>
+{% endblock %}
